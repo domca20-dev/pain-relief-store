@@ -1,0 +1,109 @@
+{%- comment -%}
+  Section 5: "Why Everything Else Failed" — THE KEY DIFFERENTIATOR (UMP)
+  Depth penetration comparison. This is our Unique Mechanism Behind the Problem.
+  irries.com doesn't have this. We do.
+{%- endcomment -%}
+
+<div class="why-failed">
+  <div class="why-failed__inner page-width">
+    <div class="why-failed__content">
+      <span class="section-eyebrow">The Hidden Reason</span>
+      <h2 class="section-heading">The reason nothing worked isn't that you haven't tried hard enough.<br><strong>It's that nothing went deep enough.</strong></h2>
+      <p class="why-failed__intro">
+        Every cream, heating pad, TENS unit, and patch you've tried shares the same hidden limitation.
+        They all work at the surface — but chronic pain doesn't live at the surface.
+      </p>
+    </div>
+
+    {%- comment -%} DEPTH PENETRATION DIAGRAM — Our UMP visual {%- endcomment -%}
+    <div class="why-failed__diagram">
+      <div class="depth-chart">
+        <div class="depth-chart__header">
+          <span class="depth-chart__label">Tissue Penetration Depth</span>
+        </div>
+
+        <div class="depth-bar depth-bar--cream">
+          <div class="depth-bar__fill" style="width: 12.5%;">
+            <span class="depth-bar__depth">~1mm</span>
+          </div>
+          <div class="depth-bar__info">
+            <span class="depth-bar__name">Creams & Patches</span>
+            <span class="depth-bar__verdict depth-bar__verdict--fail">Evaporates on skin surface</span>
+          </div>
+        </div>
+
+        <div class="depth-bar depth-bar--heating">
+          <div class="depth-bar__fill" style="width: 25%;">
+            <span class="depth-bar__depth">~2mm</span>
+          </div>
+          <div class="depth-bar__info">
+            <span class="depth-bar__name">Heating Pads</span>
+            <span class="depth-bar__verdict depth-bar__verdict--fail">Warms skin only — gone when removed</span>
+          </div>
+        </div>
+
+        <div class="depth-bar depth-bar--tens">
+          <div class="depth-bar__fill" style="width: 31%;">
+            <span class="depth-bar__depth">~2-3mm</span>
+          </div>
+          <div class="depth-bar__info">
+            <span class="depth-bar__name">TENS Units</span>
+            <span class="depth-bar__verdict depth-bar__verdict--fail">Distracts nerves — pain returns when off</span>
+          </div>
+        </div>
+
+        <div class="depth-bar depth-bar--ours">
+          <div class="depth-bar__fill" style="width: 100%;">
+            <span class="depth-bar__depth">8mm</span>
+          </div>
+          <div class="depth-bar__info">
+            <span class="depth-bar__name">[BRAND]™ Infrared Belt</span>
+            <span class="depth-bar__verdict depth-bar__verdict--pass">Reaches muscles, joints & nerve tissue</span>
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} PAIN ZONE INDICATOR {%- endcomment -%}
+      <div class="depth-chart__zone">
+        <div class="zone-line"></div>
+        <span class="zone-label">Chronic pain origin: 5–8mm deep</span>
+      </div>
+    </div>
+
+    {%- comment -%} Reframe text — graduated belief shift {%- endcomment -%}
+    <div class="why-failed__reframe">
+      <p class="reframe-text">
+        You didn't fail. You didn't pick wrong. <strong>You tried one depth eleven times in different packaging.</strong>
+      </p>
+      <p class="reframe-text reframe-text--solution">
+        The [BRAND]™ Infrared Belt uses <strong>660nm + 850nm dual wavelengths</strong> that penetrate
+        <strong>8mm into tissue</strong> — past the skin, past the surface, into the deep muscle and joint layer
+        where inflammation builds and nerves get compressed.
+      </p>
+      <p class="reframe-text reframe-text--analogy">
+        It's like watering a plant by misting the leaves vs. soaking the roots.
+        For the first time, you can reach where the pain actually lives — at home.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Why Everything Else Failed",
+  "tag": "section",
+  "class": "why-failed-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "diagram_image",
+      "label": "Custom depth diagram image (optional — CSS diagram used if empty)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Everything Else Failed"
+    }
+  ]
+}
+{% endschema %}

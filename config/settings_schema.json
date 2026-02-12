@@ -1,0 +1,33 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "[BRAND] Pain Relief Store",
+    "theme_version": "1.0.0",
+    "theme_author": "[BRAND]",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color (navy)",
+        "default": "#1a1a2e"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color (green CTAs)",
+        "default": "#2ecc71"
+      },
+      {
+        "type": "color",
+        "id": "color_sale",
+        "label": "Sale/urgency color",
+        "default": "#e74c3c"
+      }
+    ]
+  }
+]

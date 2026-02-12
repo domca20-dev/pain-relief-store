@@ -1,0 +1,77 @@
+{
+  "sections": {
+    "announcement-bar": {
+      "type": "custom-announcement-bar",
+      "settings": {
+        "text": "LIMITED TIME: Up to 50% Off + Free Gift With Every Order",
+        "background_color": "#1a1a2e",
+        "text_color": "#ffffff"
+      }
+    },
+    "trust-strip": {
+      "type": "custom-trust-strip",
+      "settings": {
+        "badge_1_text": "Free Worldwide Shipping",
+        "badge_2_text": "60-Day Money-Back Guarantee",
+        "badge_3_text": "24/7 Customer Support"
+      }
+    },
+    "product-hero": {
+      "type": "custom-product-hero",
+      "settings": {
+        "urgency_text": "High Demand — Only a few left at this price",
+        "free_gift_text": "FREE Recovery Guide with your order today!"
+      }
+    },
+    "how-it-works": {
+      "type": "custom-how-it-works",
+      "settings": {}
+    },
+    "why-failed": {
+      "type": "custom-why-failed",
+      "settings": {}
+    },
+    "condition-cards": {
+      "type": "custom-condition-cards",
+      "settings": {}
+    },
+    "the-science": {
+      "type": "custom-science",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "custom-testimonials",
+      "settings": {}
+    },
+    "stats": {
+      "type": "custom-stats",
+      "settings": {}
+    },
+    "trust-commitment": {
+      "type": "custom-trust-commitment",
+      "settings": {}
+    },
+    "faq": {
+      "type": "custom-faq",
+      "settings": {}
+    },
+    "final-cta": {
+      "type": "custom-final-cta",
+      "settings": {}
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "trust-strip",
+    "product-hero",
+    "how-it-works",
+    "why-failed",
+    "condition-cards",
+    "the-science",
+    "testimonials",
+    "stats",
+    "trust-commitment",
+    "faq",
+    "final-cta"
+  ]
+}

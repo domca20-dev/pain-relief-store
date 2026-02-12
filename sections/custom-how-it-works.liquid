@@ -1,0 +1,82 @@
+{%- comment -%}
+  Section 4: "How It Works" — 3-step visual
+  Simple, scannable. Removes complexity objection.
+{%- endcomment -%}
+
+<div class="how-it-works">
+  <div class="how-it-works__inner page-width">
+    <h2 class="section-heading">Relief in 3 Simple Steps</h2>
+    <p class="section-subheading">No pills. No appointments. No complicated setup.</p>
+
+    <div class="how-it-works__steps">
+      <div class="how-it-works__step">
+        <div class="step-number">1</div>
+        <div class="step-image-placeholder">
+          {%- if section.settings.step_1_image -%}
+            <img src="{{ section.settings.step_1_image | image_url: width: 400 }}" alt="Wrap the belt" width="400" height="300" loading="lazy">
+          {%- else -%}
+            <div class="placeholder-img">[Image: Person wrapping belt around lower back]</div>
+          {%- endif -%}
+        </div>
+        <h3 class="step-title">Wrap It On</h3>
+        <p class="step-desc">Secure the belt around your lower back, hip, knee, or any joint. Adjustable strap fits waists 28"–48".</p>
+      </div>
+
+      <div class="how-it-works__step">
+        <div class="step-number">2</div>
+        <div class="step-image-placeholder">
+          {%- if section.settings.step_2_image -%}
+            <img src="{{ section.settings.step_2_image | image_url: width: 400 }}" alt="Choose therapy mode" width="400" height="300" loading="lazy">
+          {%- else -%}
+            <div class="placeholder-img">[Image: Close-up of simple controller]</div>
+          {%- endif -%}
+        </div>
+        <h3 class="step-title">Choose Your Mode</h3>
+        <p class="step-desc">Select red light (660nm), near-infrared (850nm), or combined dual-wavelength therapy with one button.</p>
+      </div>
+
+      <div class="how-it-works__step">
+        <div class="step-number">3</div>
+        <div class="step-image-placeholder">
+          {%- if section.settings.step_3_image -%}
+            <img src="{{ section.settings.step_3_image | image_url: width: 400 }}" alt="Relax while it works" width="400" height="300" loading="lazy">
+          {%- else -%}
+            <div class="placeholder-img">[Image: Person relaxing on couch wearing belt]</div>
+          {%- endif -%}
+        </div>
+        <h3 class="step-title">Relax — It Does the Work</h3>
+        <p class="step-desc">Wear for 20–30 minutes. Read, cook, watch TV. Infrared light penetrates 8mm deep while you go about your day.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "how-it-works-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "step_1_image",
+      "label": "Step 1 image"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_2_image",
+      "label": "Step 2 image"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_3_image",
+      "label": "Step 3 image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works"
+    }
+  ]
+}
+{% endschema %}
