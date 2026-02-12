@@ -1,28 +1,111 @@
 {%- comment -%}
-  Section 1: Announcement Bar
-  "LIMITED TIME: Up to 50% Off + Free Gift" — trust + urgency
+  Section 1: Infinite Scroll Announcement Bar
+  Upgraded from static bar → infinite scrolling marquee (#13 pattern)
+  "LIMITED TIME: Up to 50% Off + Free Gift" — trust + urgency with motion
 {%- endcomment -%}
 
-<div class="announcement-bar" role="region" aria-label="Announcement">
-  <div class="announcement-bar__inner">
-    <p class="announcement-bar__message">
-      <span class="announcement-bar__icon">🔥</span>
-      {{ section.settings.text | default: 'LIMITED TIME: Up to 50% Off + Free Gift With Every Order' }}
-    </p>
+<style>
+  .announcement-bar-infinite {
+    width: 100%;
+    background: {{ section.settings.background_color | default: '#1a1a2e' }};
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+  .announcement-bar-infinite__wrapper {
+    display: flex;
+    animation: announcement-scroll 18s linear infinite;
+  }
+  .announcement-bar-infinite__text {
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .announcement-bar-infinite__text span.ab-icon {
+    font-size: 15px;
+  }
+  .announcement-bar-infinite__separator {
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+    opacity: 0.4;
+    margin-right: 40px;
+    flex-shrink: 0;
+    font-size: 10px;
+  }
+  @keyframes announcement-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .announcement-bar-infinite__text {
+      font-size: 11px;
+      margin-right: 28px;
+    }
+    .announcement-bar-infinite__separator {
+      margin-right: 28px;
+    }
+    .announcement-bar-infinite {
+      padding: 5px 0;
+    }
+  }
+</style>
+
+{%- assign announcement_text = section.settings.text | default: 'LIMITED TIME: Up to 50% Off + Free Gift With Every Order' -%}
+{%- assign secondary_text = section.settings.secondary_text | default: 'Free Shipping on All Orders' -%}
+{%- assign tertiary_text = section.settings.tertiary_text | default: '60-Day Money-Back Guarantee' -%}
+
+<div class="announcement-bar-infinite" role="region" aria-label="Announcement">
+  <div class="announcement-bar-infinite__wrapper">
+    {%- for i in (1..16) -%}
+      <div class="announcement-bar-infinite__text">
+        <span class="ab-icon">🔥</span> {{ announcement_text }}
+      </div>
+      <div class="announcement-bar-infinite__separator">★</div>
+      <div class="announcement-bar-infinite__text">
+        <span class="ab-icon">🚚</span> {{ secondary_text }}
+      </div>
+      <div class="announcement-bar-infinite__separator">★</div>
+      <div class="announcement-bar-infinite__text">
+        <span class="ab-icon">✅</span> {{ tertiary_text }}
+      </div>
+      <div class="announcement-bar-infinite__separator">★</div>
+    {%- endfor -%}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Custom Announcement Bar",
+  "name": "Infinite Announcement Bar",
   "tag": "section",
   "class": "announcement-bar-section",
   "settings": [
     {
       "type": "text",
       "id": "text",
-      "label": "Announcement text",
+      "label": "Primary announcement text",
       "default": "LIMITED TIME: Up to 50% Off + Free Gift With Every Order"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary announcement text",
+      "default": "Free Shipping on All Orders"
+    },
+    {
+      "type": "text",
+      "id": "tertiary_text",
+      "label": "Tertiary announcement text",
+      "default": "60-Day Money-Back Guarantee"
     },
     {
       "type": "color",
@@ -39,7 +122,7 @@
   ],
   "presets": [
     {
-      "name": "Custom Announcement Bar"
+      "name": "Infinite Announcement Bar"
     }
   ]
 }

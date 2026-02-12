@@ -1,26 +1,291 @@
 {%- comment -%}
-  Section 7: "The Science" — mechanism explanation
-  660nm + 850nm, ATP, photobiomodulation. Clinical credibility.
+  Section 7: "The Science" — Features & Benefits (#15 pattern)
+  Upgraded: Comparison table layout with gradient feature highlight column,
+  check/cross indicators per benefit. Keeps our 660nm + 850nm content.
   Keep it accessible — our demo is 45-70 year olds, not scientists.
 {%- endcomment -%}
 
-<div class="the-science">
-  <div class="the-science__inner page-width">
-    <span class="section-eyebrow">The Science</span>
-    <h2 class="section-heading">How Two Wavelengths Do What Nothing Else Can</h2>
-    <p class="section-subheading">
-      Used in 4,000+ physical therapy clinics for over 30 years. Now available at home.
-    </p>
+<style>
+  .science-fb {
+    background: {{ section.settings.background_color | default: '#ffffff' }};
+    padding: 56px 0 64px;
+  }
+  .science-fb__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .science-fb__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2ecc71;
+    margin-bottom: 8px;
+    text-align: center;
+    width: 100%;
+  }
+  .science-fb__title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    color: #1a1a2e;
+    margin: 0 0 8px;
+  }
+  .science-fb__subtitle {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    line-height: 1.5;
+    margin: 0 auto 40px;
+    max-width: 640px;
+  }
 
-    <div class="the-science__wavelengths">
+  /* Wavelength cards */
+  .science-fb__wavelengths {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+    align-items: start;
+  }
+  .wl-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  .wl-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .wl-card__dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .wl-card__dot--red { background: #e74c3c; box-shadow: 0 0 8px rgba(231,76,60,0.4); }
+  .wl-card__dot--nir { background: #8e44ad; box-shadow: 0 0 8px rgba(142,68,173,0.4); }
+  .wl-card__title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0;
+  }
+  .wl-card__tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #999;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+  .wl-card__benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .wl-card__benefits li {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #444;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    padding-left: 24px;
+    position: relative;
+  }
+  .wl-card__benefits li:last-child {
+    border-bottom: none;
+  }
+  .wl-card__benefits li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2ecc71;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Combined effect center card */
+  .wl-combined {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2c2c44 100%);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .wl-combined__icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 12px;
+  }
+  .wl-combined__title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .wl-combined__desc {
+    font-size: 14px;
+    line-height: 1.55;
+    opacity: 0.85;
+    margin-bottom: 20px;
+  }
+  .wl-combined__stat {
+    text-align: center;
+  }
+  .wl-combined__stat-number {
+    display: block;
+    font-size: 36px;
+    font-weight: 800;
+    color: #2ecc71;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .wl-combined__stat-label {
+    font-size: 12px;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+
+  /* Features comparison table (#15 pattern) */
+  .science-fb__table-wrap {
+    margin-bottom: 0;
+  }
+  .science-fb__table-title {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+  }
+  .science-fb__table-sub {
+    font-size: 14px;
+    text-align: center;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .fb-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .fb-table th,
+  .fb-table td {
+    padding: 12px 16px;
+    text-align: center;
+    border: 1px solid #eee;
+    font-size: 14px;
+  }
+  .fb-table th {
+    background: #f5f5f5;
+    font-weight: 700;
+    color: #555;
+    font-size: 13px;
+  }
+  .fb-table__feature {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: #fff;
+    text-align: left;
+    font-weight: 700;
+    font-size: 13px;
+    width: 42%;
+  }
+  .fb-table__check {
+    color: #2ecc71;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .fb-table__cross {
+    color: #ccc;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .fb-table tbody tr:nth-child(odd) {
+    background: #fafafa;
+  }
+
+  /* Credibility bar */
+  .science-fb__credibility {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #eee;
+  }
+  .cred-item {
+    text-align: center;
+  }
+  .cred-item__number {
+    display: block;
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a2e;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .cred-item__label {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .science-fb {
+      padding: 40px 0 48px;
+    }
+    .science-fb__title {
+      font-size: 24px;
+    }
+    .science-fb__subtitle {
+      font-size: 14px;
+    }
+    .science-fb__wavelengths {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .science-fb__credibility {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .cred-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cred-item:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+<div class="science-fb">
+  <div class="science-fb__inner">
+    <span class="science-fb__eyebrow">The Science</span>
+    <h2 class="science-fb__title">How Two Wavelengths Do What Nothing Else Can</h2>
+    <p class="science-fb__subtitle">Used in 4,000+ physical therapy clinics for over 30 years. Now available at home.</p>
+
+    <div class="science-fb__wavelengths">
       {%- comment -%} 660nm Red Light {%- endcomment -%}
-      <div class="wavelength-card wavelength-card--red">
-        <div class="wavelength-card__header">
-          <div class="wavelength-dot wavelength-dot--red"></div>
-          <h3 class="wavelength-card__title">660nm Red Light</h3>
-          <span class="wavelength-card__tag">Visible Red</span>
+      <div class="wl-card">
+        <div class="wl-card__header">
+          <div class="wl-card__dot wl-card__dot--red"></div>
+          <h3 class="wl-card__title">660nm Red Light</h3>
+          <span class="wl-card__tag">Visible Red</span>
         </div>
-        <ul class="wavelength-card__benefits">
+        <ul class="wl-card__benefits">
           <li>Stimulates <strong>cellular repair</strong> in skin and surface tissue</li>
           <li>Boosts <strong>collagen production</strong> for tissue regeneration</li>
           <li>Increases local <strong>blood circulation</strong></li>
@@ -29,54 +294,95 @@
       </div>
 
       {%- comment -%} Combined Effect {%- endcomment -%}
-      <div class="wavelength-combined">
-        <div class="combined-icon">
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="32" r="30" stroke="#2ecc71" stroke-width="2" stroke-dasharray="4 4"/>
-            <path d="M32 16v32M16 32h32" stroke="#2ecc71" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3 class="combined-title">Combined Effect</h3>
-        <p class="combined-desc">
-          When both wavelengths work together, <strong>ATP production increases</strong> —
-          your cells get the energy they need to heal faster. Inflammation decreases.
-          Pain signals reduce. The cycle that kept you hurting finally breaks.
-        </p>
-        <div class="combined-stat">
-          <span class="combined-stat__number">50%+</span>
-          <span class="combined-stat__label">Pain score reduction in clinical studies<br>(from 6.9 to 3.0 out of 10)</span>
+      <div class="wl-combined">
+        <svg class="wl-combined__icon" width="56" height="56" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="30" stroke="#2ecc71" stroke-width="2" stroke-dasharray="4 4"/>
+          <path d="M32 16v32M16 32h32" stroke="#2ecc71" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <h3 class="wl-combined__title">Combined Effect</h3>
+        <p class="wl-combined__desc">When both wavelengths work together, <strong>ATP production increases</strong> — your cells get the energy they need to heal faster. Inflammation decreases. Pain signals reduce. The cycle that kept you hurting finally breaks.</p>
+        <div class="wl-combined__stat">
+          <span class="wl-combined__stat-number">50%+</span>
+          <span class="wl-combined__stat-label">Pain score reduction in clinical studies<br>(from 6.9 to 3.0 out of 10)</span>
         </div>
       </div>
 
       {%- comment -%} 850nm Near-Infrared {%- endcomment -%}
-      <div class="wavelength-card wavelength-card--nir">
-        <div class="wavelength-card__header">
-          <div class="wavelength-dot wavelength-dot--nir"></div>
-          <h3 class="wavelength-card__title">850nm Near-Infrared</h3>
-          <span class="wavelength-card__tag">Invisible / Deep Tissue</span>
+      <div class="wl-card">
+        <div class="wl-card__header">
+          <div class="wl-card__dot wl-card__dot--nir"></div>
+          <h3 class="wl-card__title">850nm Near-Infrared</h3>
+          <span class="wl-card__tag">Deep Tissue</span>
         </div>
-        <ul class="wavelength-card__benefits">
+        <ul class="wl-card__benefits">
           <li>Penetrates <strong>8mm into deep tissue</strong> — muscles, joints, nerves</li>
-          <li>Reduces <strong>inflammatory markers</strong> (TNF-α and IL-6)</li>
+          <li>Reduces <strong>inflammatory markers</strong> (TNF-a and IL-6)</li>
           <li>Restores <strong>cellular energy (ATP)</strong> in damaged tissue</li>
           <li>Triggers <strong>photobiomodulation</strong> — the body's own healing response</li>
         </ul>
       </div>
     </div>
 
+    {%- comment -%} Features comparison table (#15 pattern) {%- endcomment -%}
+    <div class="science-fb__table-wrap">
+      <h3 class="science-fb__table-title">Why Choose [BRAND]™?</h3>
+      <p class="science-fb__table-sub">See how our technology compares to what you've tried before</p>
+      <table class="fb-table">
+        <thead>
+          <tr>
+            <th class="fb-table__feature" style="background:#f5f5f5;color:#555;">Feature</th>
+            <th>[BRAND]™ Belt</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fb-table__feature">Dual Wavelength (660nm + 850nm)</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__cross">&#10008;</td>
+          </tr>
+          <tr>
+            <td class="fb-table__feature">8mm Deep Tissue Penetration</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__cross">&#10008;</td>
+          </tr>
+          <tr>
+            <td class="fb-table__feature">Clinically Proven Technology</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__cross">&#10008;</td>
+          </tr>
+          <tr>
+            <td class="fb-table__feature">Long-Lasting Relief (Hours)</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__cross">&#10008;</td>
+          </tr>
+          <tr>
+            <td class="fb-table__feature">Works On All Joints</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__check">&#10004;</td>
+          </tr>
+          <tr>
+            <td class="fb-table__feature">No Medication Required</td>
+            <td class="fb-table__check">&#10004;</td>
+            <td class="fb-table__check">&#10004;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     {%- comment -%} Clinical credibility bar {%- endcomment -%}
-    <div class="the-science__credibility">
-      <div class="credibility-item">
-        <span class="credibility-number">4,000+</span>
-        <span class="credibility-label">PT Clinics Worldwide</span>
+    <div class="science-fb__credibility">
+      <div class="cred-item">
+        <span class="cred-item__number">4,000+</span>
+        <span class="cred-item__label">PT Clinics Worldwide</span>
       </div>
-      <div class="credibility-item">
-        <span class="credibility-number">30+</span>
-        <span class="credibility-label">Years of Clinical Use</span>
+      <div class="cred-item">
+        <span class="cred-item__number">30+</span>
+        <span class="cred-item__label">Years of Clinical Use</span>
       </div>
-      <div class="credibility-item">
-        <span class="credibility-number">660nm + 850nm</span>
-        <span class="credibility-label">Dual Wavelength Technology</span>
+      <div class="cred-item">
+        <span class="cred-item__number">660nm + 850nm</span>
+        <span class="cred-item__label">Dual Wavelength Technology</span>
       </div>
     </div>
   </div>
@@ -87,7 +393,14 @@
   "name": "The Science",
   "tag": "section",
   "class": "the-science-section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
   "presets": [
     {
       "name": "The Science"
