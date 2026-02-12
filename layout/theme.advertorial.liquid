@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#1a1a2e">
+
+  <title>
+    {{ page_title }}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {%- render 'meta-tags' -%}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  <style>
+    :root {
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --color-primary: #1a1a2e;
+      --color-accent: #2ecc71;
+      --color-bg: #ffffff;
+      --color-text: #333333;
+      --color-sale: #e74c3c;
+    }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-bg);
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+
+  {{ 'advertorial.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+  {%- comment -%}
+    Meta Pixel — same placeholder as main theme
+  {%- endcomment -%}
+</head>
+
+<body class="template-{{ template.name }} template-advertorial{% if template.suffix %} template-advertorial-{{ template.suffix }}{% endif %}">
+
+  {%- comment -%} Minimal header — logo/brand only, no full navigation {%- endcomment -%}
+  <header class="advertorial-header">
+    <div class="advertorial-header__inner">
+      <a href="{{ routes.root_url }}" class="advertorial-header__logo">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 160 }}" alt="{{ shop.name }}" height="32" loading="eager">
+        {%- else -%}
+          {{ shop.name }}
+        {%- endif -%}
+      </a>
+      <span class="advertorial-header__tag">Advertorial</span>
+    </div>
+  </header>
+
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {%- comment -%} Minimal footer — disclaimer and basic links only {%- endcomment -%}
+  <footer class="advertorial-footer">
+    <div class="advertorial-footer__inner">
+      <p class="advertorial-footer__disclaimer">
+        *Individual results may vary. This product is not intended to diagnose, treat, cure, or prevent any disease.
+        Consult your healthcare provider before starting any new treatment.
+      </p>
+      <div class="advertorial-footer__links">
+        <a href="{{ routes.root_url }}">Home</a>
+        <a href="/policies/privacy-policy">Privacy Policy</a>
+        <a href="/policies/terms-of-service">Terms</a>
+      </div>
+      <p class="advertorial-footer__copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    </div>
+  </footer>
+
+  {%- comment -%} Sticky mobile CTA bar {%- endcomment -%}
+  <div class="advertorial-sticky-cta" id="advertorialStickyCta">
+    <div class="advertorial-sticky-cta__inner">
+      <div class="advertorial-sticky-cta__text">
+        <span class="advertorial-sticky-cta__price">$119.99</span>
+        <span class="advertorial-sticky-cta__compare"><s>$249.99</s></span>
+      </div>
+      <a href="/products/pain-relief-belt" class="advertorial-sticky-cta__btn">Check Availability</a>
+    </div>
+  </div>
+
+  <script>
+    // Show sticky CTA after scrolling past first screen
+    (function() {
+      var sticky = document.getElementById('advertorialStickyCta');
+      if (!sticky) return;
+      var shown = false;
+      var threshold = window.innerHeight * 0.6;
+      function onScroll() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollY > threshold && !shown) {
+          sticky.classList.add('advertorial-sticky-cta--visible');
+          shown = true;
+        } else if (scrollY <= threshold && shown) {
+          sticky.classList.remove('advertorial-sticky-cta--visible');
+          shown = false;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+
+  <script>
+    // Lazy image loading fallback
+    if ('loading' in HTMLImageElement.prototype === false) {
+      var lazyImages = document.querySelectorAll('img[loading="lazy"]');
+      lazyImages.forEach(function(img) {
+        img.src = img.src;
+      });
+    }
+  </script>
+</body>
+</html>

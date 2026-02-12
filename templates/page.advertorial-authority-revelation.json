@@ -1,0 +1,15 @@
+{
+  "layout": "theme.advertorial",
+  "sections": {
+    "advertorial-content": {
+      "type": "advertorial-authority-revelation",
+      "settings": {
+        "product_url": "/products/pain-relief-belt",
+        "read_time": "8 min read"
+      }
+    }
+  },
+  "order": [
+    "advertorial-content"
+  ]
+}
