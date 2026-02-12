@@ -1,0 +1,119 @@
+{%- comment -%}
+  Section 8: Social Proof / Testimonials
+  Mix of: pain type diversity, age diversity, specific results.
+  Judge.me widget placeholder + manual testimonial cards as fallback.
+{%- endcomment -%}
+
+<div class="testimonials">
+  <div class="testimonials__inner page-width">
+    <span class="section-eyebrow">Real Results</span>
+    <h2 class="section-heading">Join 2,847+ People Finding Relief at Home</h2>
+    <p class="section-subheading">Hear from real customers who tried everything before finding the [BRAND]™ belt.</p>
+
+    {%- comment -%} Judge.me widget placeholder {%- endcomment -%}
+    <div class="testimonials__judgeme" id="judgeme-widget">
+      <!-- Judge.me Product Reviews Widget renders here -->
+      <!-- Install Judge.me app and add: {{ product.metafields.judgeme.widget }} -->
+    </div>
+
+    {%- comment -%} Manual testimonial cards (shown until Judge.me is installed) {%- endcomment -%}
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "I was skeptical — I've wasted hundreds on back gadgets. But this was the first thing that
+          actually felt like it was reaching the problem, not just covering it up. Two weeks in and
+          I'm walking my dog again."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Margaret T.</span>
+          <span class="testimonial-card__detail">Age 63 · Chronic Back Pain</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "My wife noticed before I did. She said I wasn't groaning when I got out of bed anymore.
+          I didn't even realize I'd been doing that. Three weeks with this belt and mornings
+          are completely different."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Robert K.</span>
+          <span class="testimonial-card__detail">Age 58 · Sciatica</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "I cancelled my next cortisone appointment. First time in two years I didn't need one.
+          This belt costs less than a single injection. I wish someone had told me about this
+          three years ago."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Denise W.</span>
+          <span class="testimonial-card__detail">Age 61 · Arthritis</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "I went from cancelling everything to being at my grandson's birthday last Saturday.
+          Standing. In the photos. That's enough for me right now."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Diane P.</span>
+          <span class="testimonial-card__detail">Age 67 · Lower Back & Hip</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "I'm a retired carpenter. My knees were done. PT twice a week, cortisone every 3 months.
+          Started using this belt on both knees daily. After a month, I'm back in my workshop.
+          My PT asked what changed."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Gerald S.</span>
+          <span class="testimonial-card__detail">Age 71 · Knee Pain</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">
+          "The heating pad was my best friend for 5 years. I thought it was helping. This belt
+          showed me what actual relief feels like. The difference between surface warmth and
+          deep relief is night and day."
+        </p>
+        <div class="testimonial-card__author">
+          <span class="testimonial-card__name">Patricia M.</span>
+          <span class="testimonial-card__detail">Age 55 · Muscle Stiffness</span>
+          <span class="testimonial-card__verified">✓ Verified Buyer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "testimonials-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

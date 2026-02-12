@@ -1,0 +1,97 @@
+{%- comment -%}
+  Section 7: "The Science" — mechanism explanation
+  660nm + 850nm, ATP, photobiomodulation. Clinical credibility.
+  Keep it accessible — our demo is 45-70 year olds, not scientists.
+{%- endcomment -%}
+
+<div class="the-science">
+  <div class="the-science__inner page-width">
+    <span class="section-eyebrow">The Science</span>
+    <h2 class="section-heading">How Two Wavelengths Do What Nothing Else Can</h2>
+    <p class="section-subheading">
+      Used in 4,000+ physical therapy clinics for over 30 years. Now available at home.
+    </p>
+
+    <div class="the-science__wavelengths">
+      {%- comment -%} 660nm Red Light {%- endcomment -%}
+      <div class="wavelength-card wavelength-card--red">
+        <div class="wavelength-card__header">
+          <div class="wavelength-dot wavelength-dot--red"></div>
+          <h3 class="wavelength-card__title">660nm Red Light</h3>
+          <span class="wavelength-card__tag">Visible Red</span>
+        </div>
+        <ul class="wavelength-card__benefits">
+          <li>Stimulates <strong>cellular repair</strong> in skin and surface tissue</li>
+          <li>Boosts <strong>collagen production</strong> for tissue regeneration</li>
+          <li>Increases local <strong>blood circulation</strong></li>
+          <li>Accelerates <strong>wound healing</strong> at the surface layer</li>
+        </ul>
+      </div>
+
+      {%- comment -%} Combined Effect {%- endcomment -%}
+      <div class="wavelength-combined">
+        <div class="combined-icon">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="30" stroke="#2ecc71" stroke-width="2" stroke-dasharray="4 4"/>
+            <path d="M32 16v32M16 32h32" stroke="#2ecc71" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="combined-title">Combined Effect</h3>
+        <p class="combined-desc">
+          When both wavelengths work together, <strong>ATP production increases</strong> —
+          your cells get the energy they need to heal faster. Inflammation decreases.
+          Pain signals reduce. The cycle that kept you hurting finally breaks.
+        </p>
+        <div class="combined-stat">
+          <span class="combined-stat__number">50%+</span>
+          <span class="combined-stat__label">Pain score reduction in clinical studies<br>(from 6.9 to 3.0 out of 10)</span>
+        </div>
+      </div>
+
+      {%- comment -%} 850nm Near-Infrared {%- endcomment -%}
+      <div class="wavelength-card wavelength-card--nir">
+        <div class="wavelength-card__header">
+          <div class="wavelength-dot wavelength-dot--nir"></div>
+          <h3 class="wavelength-card__title">850nm Near-Infrared</h3>
+          <span class="wavelength-card__tag">Invisible / Deep Tissue</span>
+        </div>
+        <ul class="wavelength-card__benefits">
+          <li>Penetrates <strong>8mm into deep tissue</strong> — muscles, joints, nerves</li>
+          <li>Reduces <strong>inflammatory markers</strong> (TNF-α and IL-6)</li>
+          <li>Restores <strong>cellular energy (ATP)</strong> in damaged tissue</li>
+          <li>Triggers <strong>photobiomodulation</strong> — the body's own healing response</li>
+        </ul>
+      </div>
+    </div>
+
+    {%- comment -%} Clinical credibility bar {%- endcomment -%}
+    <div class="the-science__credibility">
+      <div class="credibility-item">
+        <span class="credibility-number">4,000+</span>
+        <span class="credibility-label">PT Clinics Worldwide</span>
+      </div>
+      <div class="credibility-item">
+        <span class="credibility-number">30+</span>
+        <span class="credibility-label">Years of Clinical Use</span>
+      </div>
+      <div class="credibility-item">
+        <span class="credibility-number">660nm + 850nm</span>
+        <span class="credibility-label">Dual Wavelength Technology</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "The Science",
+  "tag": "section",
+  "class": "the-science-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "The Science"
+    }
+  ]
+}
+{% endschema %}

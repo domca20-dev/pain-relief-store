@@ -1,0 +1,46 @@
+{%- comment -%}
+  Section 1: Announcement Bar
+  "LIMITED TIME: Up to 50% Off + Free Gift" — trust + urgency
+{%- endcomment -%}
+
+<div class="announcement-bar" role="region" aria-label="Announcement">
+  <div class="announcement-bar__inner">
+    <p class="announcement-bar__message">
+      <span class="announcement-bar__icon">🔥</span>
+      {{ section.settings.text | default: 'LIMITED TIME: Up to 50% Off + Free Gift With Every Order' }}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "tag": "section",
+  "class": "announcement-bar-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "LIMITED TIME: Up to 50% Off + Free Gift With Every Order"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

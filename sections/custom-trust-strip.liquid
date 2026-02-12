@@ -1,0 +1,60 @@
+{%- comment -%}
+  Section 2: Trust Strip
+  3 icons: Free Worldwide Shipping | 60-Day Money-Back Guarantee | 24/7 Support
+{%- endcomment -%}
+
+<div class="trust-strip">
+  <div class="trust-strip__inner page-width">
+    <div class="trust-strip__item">
+      <svg class="trust-strip__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="6" width="22" height="14" rx="2"/><path d="M1 10h22"/><path d="M8 20V6"/><path d="M16 20V6"/>
+      </svg>
+      <span class="trust-strip__text">{{ section.settings.badge_1_text | default: 'Free Worldwide Shipping' }}</span>
+    </div>
+    <div class="trust-strip__item">
+      <svg class="trust-strip__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span class="trust-strip__text">{{ section.settings.badge_2_text | default: '60-Day Money-Back Guarantee' }}</span>
+    </div>
+    <div class="trust-strip__item">
+      <svg class="trust-strip__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span class="trust-strip__text">{{ section.settings.badge_3_text | default: '24/7 Customer Support' }}</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Strip",
+  "tag": "section",
+  "class": "trust-strip-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_1_text",
+      "label": "Badge 1 text",
+      "default": "Free Worldwide Shipping"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_text",
+      "label": "Badge 2 text",
+      "default": "60-Day Money-Back Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_text",
+      "label": "Badge 3 text",
+      "default": "24/7 Customer Support"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Strip"
+    }
+  ]
+}
+{% endschema %}
