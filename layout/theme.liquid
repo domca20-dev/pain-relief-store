@@ -46,24 +46,39 @@
   </style>
 
   {{ 'custom-product-page.css' | asset_url | stylesheet_tag }}
+  {{ 'policy-pages.css' | asset_url | stylesheet_tag }}
 
   {{ content_for_header }}
 
   {%- comment -%}
-    Meta Pixel base code — Dominik: replace PIXEL_ID with your actual pixel ID
-    Or use the Shopify Facebook Channel app for automatic integration.
+    Meta Pixel base code — replace YOUR_PIXEL_ID with your actual Meta Pixel ID.
   {%- endcomment -%}
-  <!--
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
     t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'PIXEL_ID');
+    fbq('init', 'YOUR_PIXEL_ID');
     fbq('track', 'PageView');
   </script>
-  -->
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
+  </noscript>
+
+  {%- comment -%} Meta Pixel — ViewContent event on product pages {%- endcomment -%}
+  {%- if template.name == 'product' -%}
+    <script>
+      fbq('track', 'ViewContent', {
+        content_name: {{ product.title | json }},
+        content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
+        content_type: 'product',
+        value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }},
+        currency: {{ cart.currency.iso_code | json }}
+      });
+    </script>
+  {%- endif -%}
 </head>
 
 <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
@@ -88,5 +103,58 @@
       });
     }
   </script>
+
+  {%- comment -%} Meta Pixel — AddToCart event listener {%- endcomment -%}
+  {%- if template.name == 'product' -%}
+    <script>
+      (function() {
+        document.addEventListener('click', function(e) {
+          var btn = e.target.closest('[type="submit"][name="add"], .product-hero__add-btn, .final-cta__add-btn');
+          if (btn) {
+            fbq('track', 'AddToCart', {
+              content_name: {{ product.title | json }},
+              content_ids: [{{ product.selected_or_first_available_variant.id | json }}],
+              content_type: 'product',
+              value: {{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }},
+              currency: {{ cart.currency.iso_code | json }}
+            });
+          }
+        });
+      })();
+    </script>
+  {%- endif -%}
+
+  {%- comment -%} Meta Pixel — InitiateCheckout event {%- endcomment -%}
+  {%- if template.name == 'cart' or request.page_type == 'cart' -%}
+    <script>
+      fbq('track', 'InitiateCheckout', {
+        content_ids: [{% for item in cart.items %}"{{ item.variant_id }}"{% unless forloop.last %},{% endunless %}{% endfor %}],
+        content_type: 'product',
+        num_items: {{ cart.item_count }},
+        value: {{ cart.total_price | money_without_currency | remove: ',' }},
+        currency: {{ cart.currency.iso_code | json }}
+      });
+    </script>
+  {%- endif -%}
+
+  {%- comment -%}
+    Meta Pixel — Purchase event
+    This fires on the Shopify thank-you / order confirmation page.
+    Shopify's checkout pages handle the pixel via the "Additional scripts" setting
+    (Settings > Checkout > Order status page > Additional scripts).
+    Paste the following in that field to track purchases:
+
+    <script>
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Purchase', {
+          content_ids: [{% for line_item in order.line_items %}'{{ line_item.variant.id }}'{% unless forloop.last %},{% endunless %}{% endfor %}],
+          content_type: 'product',
+          num_items: {{ order.line_items.size }},
+          value: {{ order.subtotal_price | money_without_currency | remove: ',' }},
+          currency: '{{ order.currency }}'
+        });
+      }
+    </script>
+  {%- endcomment -%}
 </body>
 </html>
