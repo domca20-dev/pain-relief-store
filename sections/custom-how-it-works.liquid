@@ -1,53 +1,204 @@
 {%- comment -%}
   Section 4: "How It Works" — 3-step visual
+  Upgraded: Card-based layout with numbered step indicators (#49 pattern)
+  With hover effects, image slots, and CTA button.
   Simple, scannable. Removes complexity objection.
 {%- endcomment -%}
 
-<div class="how-it-works">
-  <div class="how-it-works__inner page-width">
-    <h2 class="section-heading">Relief in 3 Simple Steps</h2>
-    <p class="section-subheading">No pills. No appointments. No complicated setup.</p>
+<style>
+  .hiw-steps {
+    --hiw-bg: {{ section.settings.background_color | default: '#1a1a2e' }};
+    --hiw-card-bg: {{ section.settings.card_color | default: '#ffffff' }};
+    --hiw-text: {{ section.settings.text_color | default: '#ffffff' }};
+    --hiw-card-text: {{ section.settings.card_text_color | default: '#1a1a2e' }};
+    --hiw-accent: {{ section.settings.accent_color | default: '#2ecc71' }};
+    background-color: var(--hiw-bg);
+    color: var(--hiw-text);
+    overflow: hidden;
+  }
+  .hiw-steps__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+  .hiw-steps__title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .hiw-steps__subtitle {
+    font-size: 16px;
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .hiw-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .hiw-card {
+    background: var(--hiw-card-bg);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    color: var(--hiw-card-text);
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hiw-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  .hiw-card__image-wrap {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #f0f0f0;
+  }
+  .hiw-card__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hiw-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #999;
+    padding: 16px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .hiw-card__index {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--hiw-bg);
+    color: var(--hiw-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-weight: 700;
+    font-size: 22px;
+    border: 2px solid var(--hiw-accent);
+  }
+  .hiw-card__title {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .hiw-card__desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #555;
+    margin: 0;
+  }
+  .hiw-steps__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 16px 40px;
+    background: var(--hiw-accent);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .hiw-steps__cta:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+  }
+  @media screen and (max-width: 749px) {
+    .hiw-steps__inner {
+      padding: 36px 16px 48px;
+    }
+    .hiw-steps__title {
+      font-size: 24px;
+    }
+    .hiw-steps__subtitle {
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+    .hiw-steps__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .hiw-card {
+      padding: 22px 20px;
+    }
+    .hiw-card__image-wrap {
+      aspect-ratio: 4/3;
+    }
+  }
+</style>
 
-    <div class="how-it-works__steps">
-      <div class="how-it-works__step">
-        <div class="step-number">1</div>
-        <div class="step-image-placeholder">
+<div class="hiw-steps">
+  <div class="hiw-steps__inner">
+    <h2 class="hiw-steps__title">Relief in 3 Simple Steps</h2>
+    <p class="hiw-steps__subtitle">No pills. No appointments. No complicated setup.</p>
+
+    <div class="hiw-steps__grid">
+      <div class="hiw-card">
+        <div class="hiw-card__image-wrap">
           {%- if section.settings.step_1_image -%}
-            <img src="{{ section.settings.step_1_image | image_url: width: 400 }}" alt="Wrap the belt" width="400" height="300" loading="lazy">
+            <img src="{{ section.settings.step_1_image | image_url: width: 600 }}" alt="Wrap the belt" width="600" height="600" loading="lazy">
           {%- else -%}
-            <div class="placeholder-img">[Image: Person wrapping belt around lower back]</div>
+            <div class="hiw-card__placeholder">[Image: Person wrapping belt around lower back]</div>
           {%- endif -%}
         </div>
-        <h3 class="step-title">Wrap It On</h3>
-        <p class="step-desc">Secure the belt around your lower back, hip, knee, or any joint. Adjustable strap fits waists 28"–48".</p>
+        <div class="hiw-card__index">1</div>
+        <h3 class="hiw-card__title">Wrap It On</h3>
+        <p class="hiw-card__desc">Secure the belt around your lower back, hip, knee, or any joint. Adjustable strap fits waists 28"–48".</p>
       </div>
 
-      <div class="how-it-works__step">
-        <div class="step-number">2</div>
-        <div class="step-image-placeholder">
+      <div class="hiw-card">
+        <div class="hiw-card__image-wrap">
           {%- if section.settings.step_2_image -%}
-            <img src="{{ section.settings.step_2_image | image_url: width: 400 }}" alt="Choose therapy mode" width="400" height="300" loading="lazy">
+            <img src="{{ section.settings.step_2_image | image_url: width: 600 }}" alt="Choose therapy mode" width="600" height="600" loading="lazy">
           {%- else -%}
-            <div class="placeholder-img">[Image: Close-up of simple controller]</div>
+            <div class="hiw-card__placeholder">[Image: Close-up of simple controller]</div>
           {%- endif -%}
         </div>
-        <h3 class="step-title">Choose Your Mode</h3>
-        <p class="step-desc">Select red light (660nm), near-infrared (850nm), or combined dual-wavelength therapy with one button.</p>
+        <div class="hiw-card__index">2</div>
+        <h3 class="hiw-card__title">Choose Your Mode</h3>
+        <p class="hiw-card__desc">Select red light (660nm), near-infrared (850nm), or combined dual-wavelength therapy with one button.</p>
       </div>
 
-      <div class="how-it-works__step">
-        <div class="step-number">3</div>
-        <div class="step-image-placeholder">
+      <div class="hiw-card">
+        <div class="hiw-card__image-wrap">
           {%- if section.settings.step_3_image -%}
-            <img src="{{ section.settings.step_3_image | image_url: width: 400 }}" alt="Relax while it works" width="400" height="300" loading="lazy">
+            <img src="{{ section.settings.step_3_image | image_url: width: 600 }}" alt="Relax while it works" width="600" height="600" loading="lazy">
           {%- else -%}
-            <div class="placeholder-img">[Image: Person relaxing on couch wearing belt]</div>
+            <div class="hiw-card__placeholder">[Image: Person relaxing on couch wearing belt]</div>
           {%- endif -%}
         </div>
-        <h3 class="step-title">Relax — It Does the Work</h3>
-        <p class="step-desc">Wear for 20–30 minutes. Read, cook, watch TV. Infrared light penetrates 8mm deep while you go about your day.</p>
+        <div class="hiw-card__index">3</div>
+        <h3 class="hiw-card__title">Relax — It Does the Work</h3>
+        <p class="hiw-card__desc">Wear for 20–30 minutes. Read, cook, watch TV. Infrared light penetrates 8mm deep while you go about your day.</p>
       </div>
     </div>
+
+    <a class="hiw-steps__cta" href="{{ section.settings.cta_url | default: '#product-hero' }}">
+      {{ section.settings.cta_text | default: 'Try It Risk-Free' }}
+    </a>
   </div>
 </div>
 
@@ -71,6 +222,47 @@
       "type": "image_picker",
       "id": "step_3_image",
       "label": "Step 3 image"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA button text",
+      "default": "Try It Risk-Free"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#1a1a2e"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#2ecc71"
     }
   ],
   "presets": [
