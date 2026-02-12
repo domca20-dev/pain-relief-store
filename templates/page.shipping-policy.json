@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-shipping-policy",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
