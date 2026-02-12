@@ -1,0 +1,15 @@
+{
+  "layout": "theme.advertorial",
+  "sections": {
+    "advertorial-content": {
+      "type": "advertorial-nightmare-story",
+      "settings": {
+        "product_url": "/products/pain-relief-belt",
+        "read_time": "6 min read"
+      }
+    }
+  },
+  "order": [
+    "advertorial-content"
+  ]
+}
